@@ -1,0 +1,7 @@
+:root {
+    --decline-color: #ed5555; /* отклонён */
+    --accepted-color: #b4c468; /* принят */
+    --inprogress-color: #b8a7ea; /* в процессе */
+    --processing-color: #b7e0dc; /* обработка */
+    --deprecated-color: #bdd1a0; /* устаревший */
+}
