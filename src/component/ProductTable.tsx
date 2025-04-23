@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Product } from '../types/apiTypes'
-import { fetchData } from '../services/apiService';
+import { deleteProduct, fetchData, updateProduct } from '../services/apiService';
 import AddProductForm from './AddProductForm';
+import EditProductModal from './EditProductModal';
 
-const ProductTable: React.FC = () => {
+interface ProductTableProps {
+    products: Product[];
+    onProductUpdated: (updatedProduct: Product) => void;
+    onProductDeleted: (deletedProduct: bigint) => void;
+  }
+
+const ProductTable: React.FC<ProductTableProps> = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+    const [deletingId, setDeletingId] = useState<bigint | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -24,10 +33,35 @@ const ProductTable: React.FC = () => {
         loadData();
     }, []);
 
+    const handleDelete = async (id: bigint) => {
+        try {
+            setDeletingId(id);
+            await deleteProduct(id);
+            handleProductDeleted(id);
+        } catch (error) {
+            console.error('Delete failed: ', error);
+        } finally {
+            setDeletingId(null);
+        }
+    }
+
     const handleProductAdded = (newProduct: Product) => {
         setProducts(prev => [...prev, newProduct]);
         setShowAddForm(false);
     };
+
+    const handleSave = async (updatedProduct: Product) => {
+        const savedProduct = await updateProduct(updatedProduct);
+        handleProductUpdated(savedProduct);
+    }
+
+    const handleProductUpdated = (updatedProduct: Product) => {
+        setProducts(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+    };
+    
+    const handleProductDeleted = (deletedProductId: bigint) => {
+        setProducts(prev => prev.filter(p => p.id !== deletedProductId));
+      };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -70,7 +104,10 @@ const ProductTable: React.FC = () => {
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
                             <td>
-                                <button>
+                                <button
+                                    onClick={() => setEditingProduct(product)}
+                                    className='edit-btn'
+                                >
                                     <svg
                                     width="24"
                                     height="24"
@@ -90,8 +127,11 @@ const ProductTable: React.FC = () => {
                                         />
                                     </svg>
                                 </button>
-                                <button className='delete-btn'>
-                                    <svg
+                                <button className='delete-btn'
+                                    onClick={() => handleDelete(product.id)}
+                                    disabled={deletingId === product.id}
+                                >
+                                    {deletingId === product.id ? 'Удаление...' : <svg
                                         width="24"
                                         height="24"
                                         viewBox="0 0 24 24"
@@ -106,13 +146,22 @@ const ProductTable: React.FC = () => {
                                         />
                                         <path d="M9 9H11V17H9V9Z" fill="currentColor" />
                                         <path d="M13 9H15V17H13V9Z" fill="currentColor" />
-                                    </svg>
+                                    </svg>}
+                                    
                                 </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {editingProduct && (
+                <EditProductModal
+                product={editingProduct}
+                onClose={() => setEditingProduct(null)}
+                onSave={handleSave}
+            />
+      )}
             
         </div>
     );

@@ -1,23 +1,41 @@
-import React from 'react'
+// src/components/Sidebar.tsx
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Sidebar.css';
 
-export default function Sidebar() {
+const menuItems = [
+  { path: '/receiving', title: 'Приемка', icon: '📦' },
+  { path: '/shipping', title: 'Отгрузка', icon: '🚚' },
+  { path: '/operations', title: 'Операции', icon: '⚙️' },
+  { path: '/resource-management', title: 'Управление ресурсами', icon: '👥' },
+  { path: '/yard-management', title: 'Управление двором', icon: '🏭' },
+  { path: '/products', title: 'Настройка склада', icon: '🔧' },
+  { path: '/reference-data', title: 'Справочники', icon: '📚' },
+  { path: '/billing', title: 'Биллинг', icon: '💰' },
+];
+
+const Sidebar: React.FC = () => {
+  const location = useLocation();
+
   return (
-    <div className='sidebar'>
-      <input type="text" placeholder='Поиск' />
-      <hr />
-      <div className='sidebar-item'>Приемка</div>
-      <div className='sidebar-item'>Отгрузка</div>
-      <div className='sidebar-item'>Операции</div>
-      <div className='sidebar-item'>Управление ресурсами</div>
-      <div className='sidebar-item'>Управление двором</div>
-      <div className='sidebar-item'>Настройка склада и операций</div>
-      <div className='sidebar-item'>Нормативно справочная информация</div>
-      <div className='sidebar-item'>Биллинг</div>
-      <div className='sidebar-item'>Органайзер</div>
-      <hr />
-      <div className='client-description'>
-        made by <a href="https://t.me/nokisssev">nokisssev</a>
-      </div>
-    </div>
-  )
-}
+    <aside className="sidebar">
+      <nav>
+        <ul className="sidebar-menu">
+          {menuItems.map((item) => (
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                className={location.pathname.startsWith(item.path) ? 'active' : ''}
+              >
+                <span className="menu-icon">{item.icon}</span>
+                <span className="menu-text">{item.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  );
+};
+
+export default Sidebar;

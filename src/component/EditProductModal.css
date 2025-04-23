@@ -1,0 +1,104 @@
+:root {
+    --primary-color: #7289da;
+    --sidebar-gray-color: #424549;
+    --functional-gray-color: #36393e;
+    --navbar-gray-color: #282b30;
+    --background-gray-color: #1e2124;
+    --sidebar-gray-color-dark: #16181a;
+    --light-gray-color: #99aab5;
+    --white: #ffffff;
+  
+    --yellow-color: #ffca4f;
+    --orange-color: #f28f0c;
+    --brown-color: #664400;
+    --blue-color: #5eaeeb;
+    --white-color: #FFFFFF;
+  
+    --decline-color: #ed5555; /* отклонён */
+    --accepted-color: #b4c468; /* принят */
+    --inprogress-color: #b8a7ea; /* в процессе */
+    --processing-color: #b7e0dc; /* обработка */
+    --deprecated-color: #bdd1a0; /* устаревший */
+  }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: var(--functional-gray-color);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .form-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-actions button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .form-actions button[type="button"] {
+    background-color: var(--decline-color);
+    color: white;
+  }

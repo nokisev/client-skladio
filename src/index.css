@@ -75,7 +75,7 @@ button {
   background: var(--decline-color);
 }
 
-.sidebar {
+/* .sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,4 +107,4 @@ button {
     color: var(--inprogress-color);
     text-decoration: underline;
   }
-}
+} */

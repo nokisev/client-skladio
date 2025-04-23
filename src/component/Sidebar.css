@@ -1,0 +1,46 @@
+:root {
+    --primary-color: #7289da;
+    --sidebar-gray-color: #424549;
+    --functional-gray-color: #36393e;
+    --navbar-gray-color: #282b30;
+    --background-gray-color: #1e2124;
+    --light-gray-color: #99aab5;
+    --white: #ffffff;
+}
+
+.sidebar {
+    transition: none !important; /* Убираем любые анимации */
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar-menu li a:hover {
+    background: var(--navbar-gray-color);
+    border-radius: 1.7em;
+  }
+  
+  .sidebar-menu li a.active {
+    background: var(--functional-gray-color);
+    border-radius: 1.7em;
+  }
+  
+  .menu-icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+  }
+  
+  .menu-text {
+    white-space: nowrap;
+  }

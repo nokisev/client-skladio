@@ -1,26 +1,41 @@
-import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
+// src/App.tsx
+import React from 'react';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import Sidebar from './component/Sidebar';
 import Header from './component/Header';
-import ProductTable from './component/ProductTable';
+import './App.css';
+
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
-import Layout from './component/Layout';
 import NotFoundPage from './pages/NotFoundPage';
-import Sidebar from './component/Sidebar';
 
-function App() {
+
+const AppLayout: React.FC = () => {
+  return (
+    <div className="app-container">
+      <Header />
+      <div className="main-content-wrapper">
+        <Sidebar />
+        <div className="content-area">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Layout />
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path='/products' element={<ProductsPage />}/>
+          <Route path='*' element={<NotFoundPage />}/>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

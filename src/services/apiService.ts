@@ -23,3 +23,22 @@ export const addProduct = async (productData: Omit<Product, 'id'>): Promise<Prod
     }
 };
 
+export const updateProduct = async (productData: Product): Promise<Product> => {
+    try {
+        const response = await axios.put<Product>(`${API_BASE_URL}/products/${productData.id}`, productData);
+        return response.data;
+    } catch (error) {
+        console.error('Error updating product: ', error);
+        throw error;
+    }
+}
+
+export const deleteProduct = async (id: bigint): Promise<void> => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/products/${id}`);
+    } catch (error) {
+        console.error('Error deleting product: ', error);
+        throw error;
+    }
+}
+
