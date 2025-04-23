@@ -115,6 +115,16 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ product, onClose, o
             />
           </div>
 
+          <div className="form-group">
+            <label>Ссылка на изображение:</label>
+            <input
+              type="string"
+              name="picture"
+              value={formData.picture}
+              onChange={handleChange}
+            />
+          </div>
+
           <div className="form-actions">
             <button type="button" onClick={onClose}>Отмена</button>
             <button type="submit" disabled={isSaving}>

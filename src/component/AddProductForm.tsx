@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Product } from "../types/apiTypes";
 import { addProduct } from "../services/apiService";
 
+const DEFAULT_PICTURE = "https://i.pinimg.com/736x/9c/d7/82/9cd7827c61b7122b4accb7db67f80da1.jpg";
+
 interface AddProductFormProps {
     onProductAdded: (newProduct: Product) => void;
 }
 
 const AddProductForm: React.FC<AddProductFormProps> = ({ onProductAdded }) => {
-    const [formData, setFormData] = useState<Omit<Product, 'id'>>({ article: '', name: '', description: '', product_unit: '', quantity: 0, price: 0 });
+    const [formData, setFormData] = useState<Omit<Product, 'id'>>({ article: '', name: '', description: '', product_unit: 'шт.', quantity: 0, price: 0, picture: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value}));
     };
@@ -21,7 +23,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onProductAdded }) => {
         try {
             const newProduct = await addProduct(formData);
             onProductAdded(newProduct);
-            setFormData({ article: '', name: '', description: '', product_unit: '', quantity: 0, price: 0 });
+            setFormData({ article: '', name: '', description: '', product_unit: '', quantity: 0, price: 1, picture: '' });
         } catch (error) {
             console.error('Error: ', error);
         } finally {
@@ -54,13 +56,17 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onProductAdded }) => {
             onChange={handleChange}
             placeholder="Описание"
             />
-            <input 
-            type="text"
-            name="product_unit"
-            value={formData.product_unit}
-            onChange={handleChange}
-            placeholder="Единица измерения"
-            />
+            <select
+              name="product_unit"
+              value={formData.product_unit}
+              onChange={handleChange}
+              required
+            >
+              <option value="шт">Штуки</option>
+              <option value="кг">Килограммы</option>
+              <option value="л">Литры</option>
+              <option value="уп">Упаковки</option>
+            </select>
             <input 
             type="text"
             name="quantity"
@@ -75,9 +81,16 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onProductAdded }) => {
             onChange={handleChange}
             placeholder="Цена"
             />
+            <input 
+            type="text"
+            name="picture"
+            value={formData.picture}
+            onChange={handleChange}
+            placeholder="Ссылка на изображение"
+            />
 
             <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Adding..." : "Add product"}
+                {isSubmitting ? "Добавление..." : "Добавить"}
             </button>
         </form>
     );

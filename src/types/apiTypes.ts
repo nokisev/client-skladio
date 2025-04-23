@@ -6,4 +6,5 @@ export interface Product {
     product_unit: string;
     quantity: number;
     price: number;
+    picture: string;
 }

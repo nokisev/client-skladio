@@ -1,0 +1,61 @@
+
+:root {
+    --primary-color: #7289da;
+    --sidebar-gray-color: #424549;
+    --functional-gray-color: #36393e;
+    --navbar-gray-color: #282b30;
+    --background-gray-color: #1e2124;
+    --sidebar-gray-color-dark: #16181a;
+    --light-gray-color: #99aab5;
+    --white: #ffffff;
+  
+    --yellow-color: #ffca4f;
+    --orange-color: #f28f0c;
+    --brown-color: #664400;
+    --blue-color: #5eaeeb;
+    --white-color: #FFFFFF;
+  
+    --decline-color: #ed5555; /* отклонён */
+    --accepted-color: #b4c468; /* принят */
+    --inprogress-color: #b8a7ea; /* в процессе */
+    --processing-color: #b7e0dc; /* обработка */
+    --deprecated-color: #bdd1a0; /* устаревший */
+  }
+
+.product-table {
+    background: var(--background-gray-color);
+    border-radius: 1em;
+} 
+.product-table th {
+    background: var(--navbar-gray-color);
+} 
+.product-table-name h2 {
+    font-style: italic;
+    font-weight:lighter;
+}
+
+.product-table-name {
+    margin-bottom: 10px;
+}
+
+.product-table-header {
+    font-size: 1.3em;
+    padding: 5px 10px;
+}
+
+
+.product-image {
+    width: max-content;
+    text-align: center;
+}
+.product-image img {
+    width: 50%;
+}
+
+.product-actions {
+    text-align: center;
+
+    button {
+        margin-bottom: 5px;
+    }
+}

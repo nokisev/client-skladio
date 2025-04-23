@@ -4,6 +4,8 @@ import { deleteProduct, fetchData, updateProduct } from '../services/apiService'
 import AddProductForm from './AddProductForm';
 import EditProductModal from './EditProductModal';
 
+import "./ProductTable.css";
+
 interface ProductTableProps {
     products: Product[];
     onProductUpdated: (updatedProduct: Product) => void;
@@ -67,21 +69,25 @@ const ProductTable: React.FC<ProductTableProps> = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
+        <div className='product-table-section'>
 
-            <div>
-                <button onClick={() => setShowAddForm(!showAddForm)} className='add-button'>
-                    {showAddForm ? 'Закрыть' : 'Добавить'}
-                </button>
-            </div>
+            
 
-            {showAddForm && <AddProductForm onProductAdded={handleProductAdded} />}
+            
 
-            <table>
-                <caption>
-                    <h2>skladio product list</h2>   
+            <table className='product-table'>
+                <caption className='product-table-name'>
+                    <h2>skladio product list <br />
+                        <div className='add-product-btn'>
+                        <button onClick={() => setShowAddForm(!showAddForm)} className='add-button'>
+                        {showAddForm ? 'Закрыть' : 'Добавить'}
+                        </button>
+                        </div>
+                    </h2>   
+                    {showAddForm && <AddProductForm onProductAdded={handleProductAdded} />}
                 </caption>
-                <thead>
+                
+                <thead className='product-table-header'>
                     <tr>
                         <th>Артикул</th>
                         <th>Наименование</th>
@@ -89,6 +95,7 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                         <th>Ед.</th>
                         <th>Количество</th>
                         <th>Цена</th>
+                        <th>Изображение</th>
                         <th>Действия</th>
                     </tr>
                 </thead>
@@ -103,7 +110,8 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                             <td>{product.product_unit}</td>
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
-                            <td>
+                            <td className='product-image'><img src={product.picture} /></td>
+                            <td className='product-actions'>
                                 <button
                                     onClick={() => setEditingProduct(product)}
                                     className='edit-btn'
@@ -149,7 +157,7 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                                     </svg>}
                                     
                                 </button>
-                            </td>
+                            </td>                            
                         </tr>
                     ))}
                 </tbody>
