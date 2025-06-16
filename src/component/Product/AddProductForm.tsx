@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Product } from "../types/apiTypes";
-import { addProduct } from "../services/apiService";
+import { Product } from "../../types/apiTypes";
+import { addProduct } from "../../services/apiService";
 
 const DEFAULT_PICTURE = "https://i.pinimg.com/736x/9c/d7/82/9cd7827c61b7122b4accb7db67f80da1.jpg";
 

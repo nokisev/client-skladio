@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Product } from "../types/apiTypes";
 
-const API_BASE_URL = "http://localhost:8080"
+const API_BASE_URL = "http://79.174.80.198:8080/api"
 
 export const fetchData = async (): Promise<Product[]> => {
     try {
@@ -10,6 +10,16 @@ export const fetchData = async (): Promise<Product[]> => {
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;       
+    }
+};
+
+export const fetchDataById = async (id: number): Promise<Product> => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/${id}`);
+        return response.data;
+    } catch(error) {
+        console.error('Product not found');
+        throw error;
     }
 };
 

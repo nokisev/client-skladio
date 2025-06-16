@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ProductTable from "../component/ProductTable"
+import ProductTable from "../component/Product/ProductTable"
 import { Product } from '../types/apiTypes';
 import { fetchData, updateProduct } from '../services/apiService';
 

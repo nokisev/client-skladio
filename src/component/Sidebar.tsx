@@ -4,14 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
 const menuItems = [
-  { path: '/receiving', title: 'Приемка', icon: '📦' },
-  { path: '/shipping', title: 'Отгрузка', icon: '🚚' },
-  { path: '/operations', title: 'Операции', icon: '⚙️' },
-  { path: '/resource-management', title: 'Управление ресурсами', icon: '👥' },
-  { path: '/yard-management', title: 'Управление двором', icon: '🏭' },
-  { path: '/products', title: 'Настройка склада', icon: '🔧' },
-  { path: '/reference-data', title: 'Справочники', icon: '📚' },
-  { path: '/billing', title: 'Биллинг', icon: '💰' },
+  { path: '/products', title: 'Каталог', icon: '📦' },
+  { path: '/orders/:email', title: 'Мои заказы', icon: '🚚' },
+  { path: '/admin/products', title: 'Настройка склада', icon: '🔧' },
+  { path: '/admin/orders', title: 'Управление заказами', icon: '📚' },
 ];
 
 const Sidebar: React.FC = () => {

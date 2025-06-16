@@ -1,0 +1,20 @@
+.relative {
+    position: fixed;
+    top: 10px;
+    left: 90%;
+    z-index: 999;
+}
+.absolute {
+    position: absolute;
+    background: red;
+    top:0px;
+    left: 0px;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

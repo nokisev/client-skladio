@@ -1,0 +1,18 @@
+.cart-item-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+.cart-item {
+    display: flex;
+    width: 100%;
+    margin: 15px;
+}
+.delete-btn {
+    justify-self: flex-end;
+    width: min-content;
+    height: min-content;
+}
+.cart-item-picture {
+    width: 200px;
+}

@@ -1,0 +1,29 @@
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.products-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.plate-model-container {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .plate-model-container {
+    width: 300px;
+    height: 300px;
+  }
+}

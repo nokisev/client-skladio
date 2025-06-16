@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Product } from '../types/apiTypes'
-import { deleteProduct, fetchData, updateProduct } from '../services/apiService';
+import { Product } from '../../types/apiTypes'
+import { deleteProduct, fetchData, updateProduct } from '../../services/apiService';
 import AddProductForm from './AddProductForm';
 import EditProductModal from './EditProductModal';
 
@@ -71,10 +71,6 @@ const ProductTable: React.FC<ProductTableProps> = () => {
     return (
         <div className='product-table-section'>
 
-            
-
-            
-
             <table className='product-table'>
                 <caption className='product-table-name'>
                     <h2>skladio product list <br />
@@ -96,6 +92,7 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                         <th>Количество</th>
                         <th>Цена</th>
                         <th>Изображение</th>
+                        <th>Теги</th>
                         <th>Действия</th>
                     </tr>
                 </thead>
@@ -111,6 +108,8 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
                             <td className='product-image'><img src={product.picture} /></td>
+                            
+                            <td className='product-tags'>{product.tags+"\n"}</td>
                             <td className='product-actions'>
                                 <button
                                     onClick={() => setEditingProduct(product)}
@@ -167,7 +166,7 @@ const ProductTable: React.FC<ProductTableProps> = () => {
                 <EditProductModal
                 product={editingProduct}
                 onClose={() => setEditingProduct(null)}
-                onSave={handleSave}
+                onSubmit={handleSave}
             />
       )}
             
